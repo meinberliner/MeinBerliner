@@ -14,7 +14,8 @@ public class Level1 extends GameState {
 	public void init(){
 		super.init();//call this first, it clears the entities
 		//add all entities and initialize the player here
-		player = new Player(0,0,this);
+		player = new Player(100,100,this);
+		objects.add(new Flowchart(0,0,this));
 	}
 	
 	public void render(Graphics g){
