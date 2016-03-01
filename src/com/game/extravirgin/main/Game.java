@@ -3,33 +3,41 @@ package com.game.extravirgin.main;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
+import java.util.HashMap;
 
-public class Game extends Canvas implements Runnable {
+import com.game.extravirgin.main.GameStateManager.States;
+
+public class Game extends Canvas implements Runnable, KeyListener {
 	
 	/**
-	 *  main class with game logic / rendering / game tick
+	 *  main class with  rendering / game tick
 	 */
 	private static final long serialVersionUID = 6700036366787160773L;
 	
 	public static final int WIDTH = 640, HEIGHT = WIDTH / 12 * 9;
 	private Thread thread;
 	private boolean running = false;
-	private Handler handler;
+	GameStateManager gsm;
 	
-	public enum STATE {
-		Menu, Game;
-	};
+	//So we can access the game object anywhere, by using Game.instance
+	private static Game instance;
+	//Stores state of key at its keycode
+	HashMap<Integer, Boolean> keys;
 	
-	public STATE gameState = STATE.Game;
+	public static Game getInstance(){
+		return instance;
+	}
 	
 	public Game() {
-		handler = new Handler();
-		this.addKeyListener(new KeyInput(handler));
+		gsm = new GameStateManager(this, States.Level1);
+		instance = this;
+		keys = new HashMap<>();
+		this.addKeyListener(this);
 		new Window(WIDTH, HEIGHT, "Mein Berliner", this);
-		if (gameState == STATE.Game) {
-			handler.addObject(new Player(100, 100, ID.Player));
-		}
+		
 	}
 
 	public synchronized void start() {
@@ -77,10 +85,7 @@ public class Game extends Canvas implements Runnable {
 	}
 	
 	private void tick() {
-		handler.tick();
-		if (gameState == STATE.Game) {
-			
-		}
+		gsm.tick();
 	}
 	
 	private void render() {
@@ -93,7 +98,7 @@ public class Game extends Canvas implements Runnable {
 		g.setColor(Color.red);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
-		handler.render(g);
+		gsm.render(g);
 		
 		g.dispose();
 		bs.show();
@@ -102,5 +107,31 @@ public class Game extends Canvas implements Runnable {
 	public static void main(String[] args) {
 		new Game();
 	}
+
+	@Override
+	public void keyPressed(KeyEvent arg0) {
+		keys.put(arg0.getKeyCode(), true);
+		gsm.keyDown(arg0.getKeyCode());
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		keys.put(arg0.getKeyCode(), false);
+		gsm.keyUp(arg0.getKeyCode());
+		
+	}
+
+	
+	
+	public static boolean isKeyDown(int k){
+		if(instance.keys.containsKey(k)){
+			return instance.keys.get(k);
+		}
+		return false;
+	}
+	
+	@Override
+	public void keyTyped(KeyEvent arg0) {}
 	
 }

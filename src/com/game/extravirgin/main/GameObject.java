@@ -5,12 +5,12 @@ import java.awt.Graphics;
 public abstract class GameObject {
 	
 	protected int x, y, velX, velY;
-	protected ID id;
-	
-	public GameObject(int x, int y, ID id) {
+	protected GameState gs;
+	public GameObject(int x, int y, GameState gs) {
 		this.x = x;
 		this.y = y;
-		this.id = id;
+		this.gs = gs;
+		
 	}
 	
 	public abstract void tick();
@@ -32,13 +32,6 @@ public abstract class GameObject {
 		this.y = y;
 	}
 
-	public ID getId() {
-		return id;
-	}
-
-	public void setId(ID id) {
-		this.id = id;
-	}
 
 	public int getVelX() {
 		return velX;
