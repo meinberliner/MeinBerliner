@@ -1,6 +1,8 @@
-package com.game.extravirgin.main;
+package com.game.extravirgin.gameobjects;
 
 import java.awt.Graphics;
+
+import com.game.extravirgin.gamestate.GameState;
 
 public abstract class GameObject {
 	

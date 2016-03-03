@@ -8,8 +8,6 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.util.HashMap;
 
-import com.game.extravirgin.main.GameStateManager.States;
-
 public class Game extends Canvas implements Runnable, KeyListener {
 	
 	/**

@@ -1,8 +1,10 @@
-package com.game.extravirgin.main;
+package com.game.extravirgin.gameobjects;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
+
+import com.game.extravirgin.gamestate.GameState;
 
 public class Player extends GameObject {
 

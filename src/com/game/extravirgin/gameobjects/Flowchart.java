@@ -1,4 +1,4 @@
-package com.game.extravirgin.main;
+package com.game.extravirgin.gameobjects;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -6,6 +6,9 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+
+import com.game.extravirgin.gamestate.GameState;
+import com.game.extravirgin.main.Game;
 
 public class Flowchart extends GameObject {
 

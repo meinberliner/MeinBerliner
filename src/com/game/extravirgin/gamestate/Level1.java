@@ -1,10 +1,18 @@
-package com.game.extravirgin.main;
+package com.game.extravirgin.gamestate;
 
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Level1 extends GameState {
+import com.game.extravirgin.gameobjects.Flowchart;
+import com.game.extravirgin.gameobjects.Player;
+import com.game.extravirgin.main.Game;
+import com.game.extravirgin.main.GameStateManager;
 
+public class Level1 extends GameState {
+	
+	private TileMap tileMap;
+	
+	
 	public Level1(GameStateManager gsm) {
 		super(gsm);
 	}

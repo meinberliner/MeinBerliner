@@ -1,7 +1,11 @@
-package com.game.extravirgin.main;
+package com.game.extravirgin.gamestate;
 
 import java.awt.Graphics;
 import java.util.LinkedList;
+
+import com.game.extravirgin.gameobjects.GameObject;
+import com.game.extravirgin.gameobjects.Player;
+import com.game.extravirgin.main.GameStateManager;
 
 public abstract class GameState {
 

@@ -2,6 +2,9 @@ package com.game.extravirgin.main;
 
 import java.awt.Graphics;
 
+import com.game.extravirgin.gamestate.GameState;
+import com.game.extravirgin.gamestate.Level1;
+
 public class GameStateManager {
 		
 	GameState currentState;
